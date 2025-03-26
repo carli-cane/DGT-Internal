@@ -1,5 +1,4 @@
 import easygui
-from easygui.boxes.utils import TRUE 
 TITLE = "Carli's Quiz"
 SCORE = 0 # how many they get right
 ANSWER = 0 # how many they've answered
@@ -64,6 +63,9 @@ PLAY_AGAIN = "Yes"
 while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
     while ANSWER < 5:
       subject = easygui.buttonbox("What would you like to be quizzed on?", TITLE, SUBJECTS)
+      for x in SUBJECTS[:]:
+         if x == subject:
+            SUBJECTS.remove(x)
       
       if subject == "Science":
          easygui.msgbox("Awesome! You will be answering science questions",TITLE)
@@ -544,6 +546,6 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
          easygui.msgbox("Lets play!")
          ANSWER = 0
          SCORE = 0
-      
+         
 if age >= MAX_AGE or age <= MIN_AGE:
    easygui.msgbox("You are not old enough to play", TITLE)
