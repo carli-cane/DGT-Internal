@@ -30,6 +30,8 @@ easygui.msgbox("Welcome to the game", TITLE)
 age = easygui.integerbox("Before we begin, how old are you?", TITLE)
 if age > MIN_AGE and age < MAX_AGE:
    easygui.msgbox("You are old enough to play",TITLE)
+name = easygui.enterbox("What is your name?",TITLE)
+easygui.msgbox("Welcome " + name, TITLE)
 PLAY_AGAIN = "Yes"
 while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
    while ANSWER < 5:
@@ -41,108 +43,114 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
       def quiz(subject,question, ca_answer, answer):
          SCORE = 0 # how many they get right
          ANSWER = 0 # how many they've answered
-         easygui.msgbox("Awesome! You will be answering " + subject + " questions",TITLE)
-         choice = easygui.buttonbox(question[0], TITLE, choices = answer[0])
-         if choice != ca_answer[0]:
-            easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
-            choice2 = easygui.buttonbox(question[0], TITLE, choices = answer[0])
-            if choice2 != ca_answer[0]:
-               easygui.msgbox("Sorry that was incorrect",TITLE)
-               easygui.msgbox("The answer was " + ca_answer[0],TITLE)
+         while ANSWER < 5:
+            easygui.msgbox("Awesome! You will be answering " + subject + " questions",TITLE)
+            choice = easygui.buttonbox(question[0], TITLE, choices = answer[0])
+            if choice != ca_answer[0]:
+               easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
+               choice2 = easygui.buttonbox(question[0], TITLE, choices = answer[0])
+               if choice2 != ca_answer[0]:
+                  easygui.msgbox("Sorry that was incorrect",TITLE)
+                  easygui.msgbox("The answer was " + ca_answer[0],TITLE)
+                  ANSWER += 1
+               if choice2 == ca_answer[0]:
+                  easygui.msgbox("That was correct!",TITLE)
+                  ANSWER += 1
+            if choice == ca_answer[0]:
+               easygui.msgbox("Well done! That was correct",TITLE)
                ANSWER += 1
-            if choice2 == ca_answer[0]:
-               easygui.msgbox("That was correct!",TITLE)
+               SCORE +=1
+            choice = easygui.buttonbox(question[1], TITLE, choices = answer[1])
+            if choice != ca_answer[1]:
+               easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
+               choice2 = easygui.buttonbox(question[1], TITLE, choices = answer[1])
+               if choice2 != ca_answer[1]:
+                  easygui.msgbox("Sorry that was incorrect",TITLE)
+                  easygui.msgbox("The answer was " + ca_answer[1],TITLE)
+                  ANSWER += 1
+               if choice2 == ca_answer[1]:
+                  easygui.msgbox("That was correct!",TITLE)
+                  ANSWER += 1
+            if choice == ca_answer[1]:
+               easygui.msgbox("Well done! That was correct",TITLE)
                ANSWER += 1
-         if choice == ca_answer[0]:
-            easygui.msgbox("Well done! That was correct",TITLE)
-            ANSWER += 1
-            SCORE +=1
-         choice = easygui.buttonbox(question[1], TITLE, choices = answer[1])
-         if choice != ca_answer[1]:
-            easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
-            choice2 = easygui.buttonbox(question[1], TITLE, choices = answer[1])
-            if choice2 != ca_answer[1]:
-               easygui.msgbox("Sorry that was incorrect",TITLE)
-               easygui.msgbox("The answer was " + ca_answer[1],TITLE)
+               SCORE +=1
+            choice = easygui.buttonbox(question[2], TITLE, choices = answer[2])
+            if choice != ca_answer[2]:
+               easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
+               choice2 = easygui.buttonbox(question[2], TITLE, choices = answer[2])
+               if choice2 != ca_answer[2]:
+                  easygui.msgbox("Sorry that was incorrect",TITLE)
+                  easygui.msgbox("The answer was " + ca_answer[2],TITLE)
+                  ANSWER += 1
+               if choice2 == ca_answer[2]:
+                  easygui.msgbox("That was correct!",TITLE)
+                  ANSWER += 1
+            if choice == ca_answer[2]:
+               easygui.msgbox("Well done! That was correct",TITLE)
                ANSWER += 1
-            if choice2 == ca_answer[1]:
-               easygui.msgbox("That was correct!",TITLE)
+               SCORE +=1
+            choice = easygui.buttonbox(question[3], TITLE, choices = answer[3])
+            if choice != ca_answer[3]:
+               easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
+               choice2 = easygui.buttonbox(question[3], TITLE, choices = answer[3])
+               if choice2 != ca_answer[3]:
+                  easygui.msgbox("Sorry that was incorrect",TITLE)
+                  easygui.msgbox("The answer was " + ca_answer[3],TITLE)
+                  ANSWER += 1
+               if choice2 == ca_answer[3]:
+                  easygui.msgbox("That was correct!",TITLE)
+                  ANSWER += 1
+            if choice == ca_answer[3]:
+               easygui.msgbox("Well done! That was correct",TITLE)
                ANSWER += 1
-         if choice == ca_answer[1]:
-            easygui.msgbox("Well done! That was correct",TITLE)
-            ANSWER += 1
-            SCORE +=1
-         choice = easygui.buttonbox(question[2], TITLE, choices = answer[2])
-         if choice != ca_answer[2]:
-            easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
-            choice2 = easygui.buttonbox(question[2], TITLE, choices = answer[2])
-            if choice2 != ca_answer[2]:
-               easygui.msgbox("Sorry that was incorrect",TITLE)
-               easygui.msgbox("The answer was " + ca_answer[2],TITLE)
+               SCORE +=1
+            choice = easygui.buttonbox(question[4], TITLE, choices = answer[4])
+            if choice != ca_answer[4]:
+               easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
+               choice2 = easygui.buttonbox(question[4], TITLE, choices = answer[4])
+               if choice2 != ca_answer[4]:
+                  easygui.msgbox("Sorry that was incorrect",TITLE)
+                  easygui.msgbox("The answer was " + ca_answer[4],TITLE)
+                  ANSWER += 1
+               if choice2 == ca_answer[4]:
+                  easygui.msgbox("That was correct!",TITLE)
+                  ANSWER += 1
+            if choice == ca_answer[4]:
+               easygui.msgbox("Well done! That was correct",TITLE)
                ANSWER += 1
-            if choice2 == ca_answer[2]:
-               easygui.msgbox("That was correct!",TITLE)
-               ANSWER += 1
-         if choice == ca_answer[2]:
-            easygui.msgbox("Well done! That was correct",TITLE)
-            ANSWER += 1
-            SCORE +=1
-         choice = easygui.buttonbox(question[3], TITLE, choices = answer[3])
-         if choice != ca_answer[3]:
-            easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
-            choice2 = easygui.buttonbox(question[3], TITLE, choices = answer[3])
-            if choice2 != ca_answer[3]:
-               easygui.msgbox("Sorry that was incorrect",TITLE)
-               easygui.msgbox("The answer was " + ca_answer[3],TITLE)
-               ANSWER += 1
-            if choice2 == ca_answer[3]:
-               easygui.msgbox("That was correct!",TITLE)
-               ANSWER += 1
-         if choice == ca_answer[3]:
-            easygui.msgbox("Well done! That was correct",TITLE)
-            ANSWER += 1
-            SCORE +=1
-         choice = easygui.buttonbox(question[4], TITLE, choices = answer[4])
-         if choice != ca_answer[4]:
-            easygui.msgbox("Sorry that was incorrect. Try again",TITLE)
-            choice2 = easygui.buttonbox(question[4], TITLE, choices = answer[4])
-            if choice2 != ca_answer[4]:
-               easygui.msgbox("Sorry that was incorrect",TITLE)
-               easygui.msgbox("The answer was " + ca_answer[4],TITLE)
-               ANSWER += 1
-            if choice2 == ca_answer[4]:
-               easygui.msgbox("That was correct!",TITLE)
-               ANSWER += 1
-         if choice == ca_answer[4]:
-            easygui.msgbox("Well done! That was correct",TITLE)
-            ANSWER += 1
-            SCORE +=1
-   
+               SCORE +=1
+         easygui.msgbox("Well done " + name + " you completed the quiz! You got " + str(SCORE) + " out of 5" ,TITLE)
 
       if subject == "Science":
          quiz("Science",Q_SCIENCE,CA_SCIENCE, A_SCIENCE)
+         ANSWER = 5
       if subject == "Math":
          quiz("Math",Q_MATH,CA_MATH, A_MATH)
+         ANSWER = 5
       if subject == "History":
          quiz("History", Q_HISTORY,CA_HISTORY,A_HISTORY)
+         ANSWER = 5
       if subject == "Geography":
          quiz("Geography",Q_GEO,CA_GEO, A_GEO)
+         ANSWER = 5
       if subject == "Riddles":
          quiz("Riddles",Q_RIDDLES,CA_RIDDLES, A_RIDDLES)
+         ANSWER = 5
       if subject == "General":
          quiz("General",Q_GENERAL,CA_GENERAL, A_GENERAL)
+         ANSWER = 5
          
-      
    while ANSWER == 5:
-      easygui.msgbox("Well done you completed the quiz! You got " + str(SCORE) + " out of 5",TITLE)
       PLAY_AGAIN = easygui.buttonbox("Would you like to play again?",TITLE,choices = ["Yes","No"])
       if PLAY_AGAIN == "No":
-         easygui.msgbox("Goodbye", TITLE)
+         easygui.msgbox("Goodbye " + name, TITLE)
          break  
       if PLAY_AGAIN == "Yes":
          easygui.msgbox("Lets play!")
          ANSWER = 0
          SCORE = 0
+         
 
 if age >= MAX_AGE or age <= MIN_AGE:
    easygui.msgbox("You are not old enough to play", TITLE)
