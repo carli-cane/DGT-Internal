@@ -11,7 +11,7 @@ Q_MATH = ["What is the name of this formula 'A^2 + B^2 = C^2'", "How many degres
 Q_HISTORY = ["What year did World War 2 start?", "What day is a memorial day for soldiers in New Zealand and Australia?", "How many years did the 100 year war last?", "What year did Hitler commit suicide?", "Who was the first person on the moon?"]
 Q_GEO = ["What is the capital of the United States?", "Which gulf recently had its name changed?", "What country is the Leaning Tower of Pisa in?", "Which country has a replica of the Statue of Liberty?", "What country is closest to Greenland?"]
 Q_RIDDLES = ["What is full of holes but still holds water?", "The more there is, the less you see. What is it?", "What has many keys but cannot open any doors?", "Where does today come before yesterday?", "What has lots of eyes but cannot see?"]
-Q_GENERAL = ["What is a group of crows called?", "How many hearts does an octopus have?", "What is the rarest blood type?", "Who is the greek god or goddess of love?", "What is the only planet that rotates on its side?"]
+Q_GENERAL = ["What is a group of crows called?", "How many hearts does an octopus have?", "What is the rarest blood type?", "Who is the greek god/goddess of love?", "What is the only planet that rotates on its side?"]
 
 CA_SCIENCE = ["Nucleus", "Nitrogen", "Distance/Time", "4", "118"]
 CA_MATH = ["Pythagoras Theorum", "90", "20", "64", "18"]
@@ -28,29 +28,31 @@ A_RIDDLES = [["Sponge", "Bucket", "Mouth", "Wells"], ["Light", "Darkness", "Air"
 A_GENERAL = [["Flock", "Group", "Murder", "Fowl"], ["2", "1", "12", "3"], ["O+", "-AB", "-O", "AB"], ["Ares", "Demeter", "Persephone", "Aphrodite"], ["Neptune", "Uranus", "Jupiter", "Earth"]]
 
 easygui.msgbox("Welcome to the game", TITLE)
-age = easygui.integerbox("Before we begin, how old are you?", TITLE)
-if age > MIN_AGE and age < MAX_AGE:
+easygui.msgbox("This quiz is designed for people aged 15 to 18")
+age = easygui.integerbox("So before we begin, how old are you?", TITLE)
+if age > MIN_AGE and age < MAX_AGE:   # if the user is in the allocated age range
     easygui.msgbox("You are old enough to play", TITLE)
     name = easygui.enterbox("What is your name?", TITLE)
     easygui.msgbox("Welcome " + name, TITLE)
+    easygui.msgbox("This quiz will have 5 multiple choice questions and when we begin you will have your choice between 6 subjects")
 PLAY_AGAIN = "Yes"
-while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
+while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:  # makes sure to only play the quiz while the age is in the correct range
     while ANSWER < 5:
         subject = easygui.buttonbox("What would you like to be quizzed on?", TITLE,  SUBJECTS)
-        for x in SUBJECTS[:]:
+        for x in SUBJECTS[:]:  # removes the subject the user chose so they can't do it again if they choose to play again
             if x == subject:
                 SUBJECTS.remove(x)
 
-        def quiz(subject, question, ca_answer, answer):
+        def quiz(subject, question, ca_answer, answer):  # my main structure for my quiz
             """This function runs the entirety of the quiz."""
             SCORE = 0    # how many they get right
             ANSWER = 0   # how many they've answered
             while ANSWER < 5:
                 easygui.msgbox("Awesome! You will be answering " + subject + " questions", TITLE)
-                choice = easygui.buttonbox(question[0], TITLE, choices=answer[0])
+                choice = easygui.buttonbox(question[0], TITLE, choices=answer[0])  # first attempt at question
                 if choice != ca_answer[0]:
                     easygui.msgbox("Sorry that was incorrect. Try again", TITLE)
-                    choice2 = easygui.buttonbox(question[0], TITLE, choices=answer[0])
+                    choice2 = easygui.buttonbox(question[0], TITLE, choices=answer[0])  # second attempt at question
                     if choice2 != ca_answer[0]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[0], TITLE)
@@ -142,13 +144,18 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
             quiz("General", Q_GENERAL, CA_GENERAL, A_GENERAL)
             ANSWER = 5
     while ANSWER == 5:
-        PLAY_AGAIN = easygui.buttonbox("Would you like to play again?", TITLE, choices=["Yes", "No"])
+        PLAY_AGAIN = easygui.buttonbox("Would you like to play again?", TITLE, choices=["Yes", "No"])  # play again feature that gives users the choice to go again or quit
         if PLAY_AGAIN == "No":
             easygui.msgbox("Goodbye " + name, TITLE)
+            fun = easygui.buttonbox("Did you have fun?", TITLE, choices=["Yes","No"])
+            if fun == "Yes":
+               easygui.msgbox("I'm glad :D. I hope you come back " + name, TITLE)
+            if fun == "No":
+                easygui.msgbox("Oh.", TITLE)
             break
         if PLAY_AGAIN == "Yes":
             easygui.msgbox("Lets play!")
             ANSWER = 0
             SCORE = 0
-if age >= MAX_AGE or age <= MIN_AGE:
+if age >= MAX_AGE or age <= MIN_AGE:  # if the user is above or below the allocated age range
     easygui.msgbox("You are not old enough to play", TITLE)
