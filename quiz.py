@@ -1,10 +1,12 @@
 """This is a multi choice quiz giving users the choice of 6 subjects."""
 import easygui
 TITLE = "Carli's Quiz"
-SCORE = 0   # how many they get right
-ANSWER = 0  # how many they've answered
 MIN_AGE = 14
 MAX_AGE = 18
+NUM_QNS = 5
+score = 0   # how many they get right
+answers = 0  # how many they've answered
+
 # The different subjects the user can chose from
 SUBJECTS = ["Science", "Math", "History", "Geography", "Riddles", "General"]
 # Five questions per subject so that user can do any of the six subjects
@@ -43,7 +45,7 @@ if age > MIN_AGE and age < MAX_AGE:
 PLAY_AGAIN = "Yes"
 # makes sure to only play the quiz while the age is in the correct range
 while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:  
-    while ANSWER < 5:
+    while answers < NUM_QNS:
         subject = easygui.buttonbox("What would you like to be quizzed on?", TITLE,  SUBJECTS)
          # removes the subject the user chose so they can't do it again if they choose to play again
         for x in SUBJECTS[:]: 
@@ -52,28 +54,32 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
 
         def quiz(subject, question, ca_answer, answer):  # my main structure for my quiz
             """This function runs the entirety of the quiz."""
-            SCORE = 0    # how many they get right
-            ANSWER = 0   # how many they've answered
+            score = 0    # how many they get right
+            answers = 0   # how many they've answered
             # runs the quiz till user has answered 5 questions
-            while ANSWER < 5:  
+            while answers < NUM_QNS:  
                 easygui.msgbox("Awesome! You will be answering " + subject + " questions", TITLE)
                 # first attempt at question
                 choice = easygui.buttonbox(question[0], TITLE, choices=answer[0])  
+                # if the first attempt is wrong
                 if choice != ca_answer[0]:
                     easygui.msgbox("Sorry that was incorrect. Try again", TITLE)
                     # second attempt at question
                     choice2 = easygui.buttonbox(question[0], TITLE, choices=answer[0])  
+                    # if the second attempt is wrong
                     if choice2 != ca_answer[0]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[0], TITLE)
-                        ANSWER += 1
+                        answers += 1
+                    # if the second attempt is correct
                     if choice2 == ca_answer[0]:
                         easygui.msgbox("That was correct!", TITLE)
-                        ANSWER += 1
+                        answers += 1
+                # if the first attempt is correct
                 if choice == ca_answer[0]:
                     easygui.msgbox("Well done! That was correct", TITLE)
-                    ANSWER += 1
-                    SCORE += 1
+                    answers += 1
+                    score += 1
                 # first attempt at question
                 choice = easygui.buttonbox(question[1], TITLE, choices=answer[1])
                 if choice != ca_answer[1]:
@@ -83,14 +89,14 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
                     if choice2 != ca_answer[1]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[1], TITLE)
-                        ANSWER += 1
+                        answers += 1
                     if choice2 == ca_answer[1]:
                         easygui.msgbox("That was correct!", TITLE)
-                        ANSWER += 1
+                        answers += 1
                 if choice == ca_answer[1]:
                     easygui.msgbox("Well done! That was correct", TITLE)
-                    ANSWER += 1
-                    SCORE += 1
+                    answers += 1
+                    score += 1
                 # first attempt at question
                 choice = easygui.buttonbox(question[2], TITLE, choices=answer[2])
                 if choice != ca_answer[2]:
@@ -100,14 +106,14 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
                     if choice2 != ca_answer[2]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[2], TITLE)
-                        ANSWER += 1
+                        answers += 1
                     if choice2 == ca_answer[2]:
                         easygui.msgbox("That was correct!", TITLE)
-                        ANSWER += 1
+                        answers += 1
                 if choice == ca_answer[2]:
                     easygui.msgbox("Well done! That was correct", TITLE)
-                    ANSWER += 1
-                    SCORE += 1
+                    answers += 1
+                    score += 1
                 # first attempt at question
                 choice = easygui.buttonbox(question[3], TITLE, choices=answer[3])
                 if choice != ca_answer[3]:
@@ -117,14 +123,14 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
                     if choice2 != ca_answer[3]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[3], TITLE)
-                        ANSWER += 1
+                        answers += 1
                     if choice2 == ca_answer[3]:
                         easygui.msgbox("That was correct!", TITLE)
-                        ANSWER += 1
+                        answers += 1
                 if choice == ca_answer[3]:
                     easygui.msgbox("Well done! That was correct", TITLE)
-                    ANSWER += 1
-                    SCORE += 1
+                    answers += 1
+                    score += 1
                 # first attempt at question
                 choice = easygui.buttonbox(question[4], TITLE, choices=answer[4])
                 if choice != ca_answer[4]:
@@ -134,47 +140,44 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
                     if choice2 != ca_answer[4]:
                         easygui.msgbox("Sorry that was incorrect", TITLE)
                         easygui.msgbox("The answer was " + ca_answer[4], TITLE)
-                        ANSWER += 1
+                        answers += 1
                     if choice2 == ca_answer[4]:
                         easygui.msgbox("That was correct!", TITLE)
-                        ANSWER += 1
+                        answers += 1
                 if choice == ca_answer[4]:
                     easygui.msgbox("Well done! That was correct", TITLE)
-                    ANSWER += 1
-                    SCORE += 1
-            easygui.msgbox("Well done " + name + " you completed the quiz! You got " + str(SCORE) + " out of 5", TITLE)
+                    answers += 1
+                    score += 1
+            easygui.msgbox("Well done " + name + " you completed the quiz! You got " + str(score) + " out of 5", TITLE)
         # changes what the quiz is about depending on the users choice
         if subject == "Science":
             quiz("Science", Q_SCIENCE, CA_SCIENCE, A_SCIENCE)
-            ANSWER = 5
+            answers = 5
         if subject == "Math":
             quiz("Math", Q_MATH, CA_MATH, A_MATH)
-            ANSWER = 5
+            answers = 5
         if subject == "History":
             quiz("History", Q_HISTORY, CA_HISTORY, A_HISTORY)
-            ANSWER = 5
+            answers = 5
         if subject == "Geography":
             quiz("Geography", Q_GEO, CA_GEO, A_GEO)
-            ANSWER = 5
+            answers = 5
         if subject == "Riddles":
             quiz("Riddles", Q_RIDDLES, CA_RIDDLES, A_RIDDLES)
-            ANSWER = 5
+            answers = 5
         if subject == "General":
             quiz("General", Q_GENERAL, CA_GENERAL, A_GENERAL)
-            ANSWER = 5
+            answers = 5
     # only runs this code once the user has answered all the questions
-    while ANSWER == 5:
+    while answers == 5:
         # play again feature that gives users the choice to go again or quit
         PLAY_AGAIN = easygui.buttonbox("Would you like to play again?", TITLE, choices=["Yes", "No"])  
         # runs when the user doesn't want to play again
         if PLAY_AGAIN == "No":
             easygui.msgbox("Goodbye " + name, TITLE)
-            # this chunck of code was an addition I added for fun
             fun = easygui.buttonbox("Did you have fun?", TITLE, choices=["Yes","No"])
-            # if the user enjoyed the quiz
             if fun == "Yes":
                easygui.msgbox("I'm glad :D. I hope you come back " + name, TITLE)
-            # if the user didn't enjoy the quiz
             if fun == "No":
                 easygui.msgbox("Oh.", TITLE)
             break
@@ -182,8 +185,8 @@ while PLAY_AGAIN == "Yes" and age > MIN_AGE and age < MAX_AGE:
         if PLAY_AGAIN == "Yes":
             easygui.msgbox("Lets play!")
             # resets everything so that the code will run again
-            ANSWER = 0
-            SCORE = 0
+            answers = 0
+            score = 0
 # if the user is above or below the allocated age range
 if age >= MAX_AGE or age <= MIN_AGE:  
     easygui.msgbox("You are not old enough to play", TITLE)
